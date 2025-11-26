@@ -1,0 +1,5 @@
+{
+  "name": "Epica - AI Novelist",
+  "description": "An autonomous agentic engine that authors full-length novels with illustrations, maintaining plot consistency and emotional depth via recursive context chaining.",
+  "requestFramePermissions": []
+}
