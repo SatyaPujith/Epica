@@ -184,9 +184,12 @@ Edit `services/themes.ts` to add your own visual themes with custom:
 ## 🐛 Troubleshooting
 
 **429 Rate Limit Errors:**
+- **Daily Quota:** Free tier allows 200 requests/day (~6 books)
+- **Per-minute limit:** 15 requests/minute
 - Wait a few minutes between book generations
 - The app will automatically retry with delays
 - Consider using different API keys for high volume
+- Upgrade to paid plan for higher limits
 
 **Images Not Generating:**
 - Check browser console for errors

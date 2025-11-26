@@ -89,10 +89,26 @@ const App: React.FC = () => {
       setProgress({ stage: 'Binding Book', percent: 100, currentAction: 'Finalizing formatting...' });
       setTimeout(() => setView(ViewState.READING), 2000);
 
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
       setBook(prev => prev ? { ...prev, status: 'failed' } : null);
-      alert("The muse was interrupted (API Error). Please try again.");
+      
+      // Check if it's a quota error
+      const errorMessage = e?.message || JSON.stringify(e);
+      if (errorMessage.includes('quota') || errorMessage.includes('429')) {
+        alert(
+          "📚 Daily API Quota Exceeded\n\n" +
+          "You've reached the free tier limit (200 requests/day).\n\n" +
+          "Solutions:\n" +
+          "1. Wait until tomorrow for quota reset\n" +
+          "2. Use a different API key\n" +
+          "3. Upgrade to paid plan at ai.google.dev\n\n" +
+          "Tip: Each book uses ~31 API requests."
+        );
+      } else {
+        alert("The muse was interrupted (API Error). Please try again.");
+      }
+      
       setView(ViewState.SETUP);
     }
   };
